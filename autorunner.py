@@ -14,3 +14,5 @@ while True:
         pyautogui.moveRel(-1000, 0, duration=1)
         sleep(1)
     sleep(10)
+
+# Trying to revert this now.
