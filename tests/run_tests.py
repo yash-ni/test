@@ -5,3 +5,5 @@ os.mkdir(curDir+"/logs")
 
 f = open(f"{curDir+'/logs/'}myfile.txt", "w")
 print("Hello world")
+
+sdfk
