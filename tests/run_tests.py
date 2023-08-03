@@ -1,9 +1,12 @@
 import os
+import subprocess
 
-curDir = os.path.dirname(os.path.realpath(__file__))
-os.mkdir(curDir+"/logs")
+def sayHello():
+    print("Hello World")
+    output = subprocess.run(["ls" "-la"], shell=True, capture_output=True, text=True)
+    if output.stderr:
+        raise Exception(output.stderr)
+    if output.stdout:
+        print(output.stdout)
 
-f = open(f"{curDir+'/logs/'}myfile.txt", "w")
-print("Hello world")
-
-sdfk
+sayHello()

@@ -25,11 +25,3 @@ jobs:
       - name: Run Python script
         run: python3 tests/run_tests.py
         # If your Python script fails, it will return a non-zero exit code by default
-
-  notify_on_failure:
-    needs: check_python_script
-    runs-on: ubuntu-latest
-    if: ${{ needs.check_python_script.result == 'failure' }}
-    steps:
-      - name: Send notification
-        run: echo "The Python script failed. Check the logs for details."
