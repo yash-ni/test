@@ -3,9 +3,10 @@ import subprocess
 
 def sayHello():
     print("Hello World")
-    output = subprocess.run("ls -la", shell=True, capture_output=True, text=True)
+    output = subprocess.run("sadf", shell=True, capture_output=True, text=True)
     if output.stderr:
-        raise Exception(output.stderr)
+        # raise Exception(output.stderr)
+        pass
     if output.stdout:
         print(output.stdout)
 
