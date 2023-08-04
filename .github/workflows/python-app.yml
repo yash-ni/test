@@ -25,3 +25,18 @@ jobs:
       - name: Run Python script
         run: python3 tests/run_tests.py
         # If your Python script fails, it will return a non-zero exit code by default
+
+      - if: ${{always() && steps.check_folder.outputs.folder_exists == 'true'}}
+        uses: actions/upload-artifact@v3
+        with:
+          name: Download New_ATS Test Results
+          path: ${{runner.workspace}}\test\logs
+
+      - name: Check Whether Logs Folder Exists
+        id: check_logs_folder
+        run: |
+          if [ -d "${{runner.workspace}}\test\logs" ]; then
+            echo "::set-output name=folder_exists::true"
+          else
+            echo "::set-output name=folder_exists::false"
+          fi
