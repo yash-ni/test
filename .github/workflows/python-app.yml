@@ -51,6 +51,6 @@ jobs:
               if ($_.PSIsContainer -eq $false) {
                   Write-Host "Contents of $($_.Name):"
                   Get-Content $_.FullName
-                  Write-Host ""
+                  Write-Host "${{steps.set_time.outputs.time }}"
               }
           }
