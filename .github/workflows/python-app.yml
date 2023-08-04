@@ -38,3 +38,7 @@ jobs:
         with:
           name: Download New_ATS Test Results
           path: ${{runner.workspace}}/test/logs
+      - name: Show artifacts
+        run: |
+        cat ${{runner.workspace}}/test/logs/*
+        
