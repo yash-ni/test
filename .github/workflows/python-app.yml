@@ -26,15 +26,14 @@ jobs:
         run: python3 tests/run_tests.py
         # If your Python script fails, it will return a non-zero exit code by default
 
-      - name: Check Logs existence
+      - name: Check whether log folder exists
         id: check_files
         uses: andstor/file-existence-action@v2.0.0
         with:
           files: "logs/*.txt"
-          step-output: false
 
       - if: ${{always() && steps.check_files.outputs.files_exists == 'true' }}
-        name: Download Artifacts
+        name: Download Artifacts if logs exists
         uses: actions/upload-artifact@v3
         with:
           name: Download New_ATS Test Results
