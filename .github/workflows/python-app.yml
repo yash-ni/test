@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   check_python_script:
-    runs-on: ubuntu-latest # Use the appropriate operating system here
+    runs-on: windows-latest # Use the appropriate operating system here
 
     steps:
       - uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: "3.10"
       - name: Run Python script
-        run: python3 tests/run_tests.py
+        run: python tests/run_tests.py
         # If your Python script fails, it will return a non-zero exit code by default
 
       - name: Check whether logs folder exists
@@ -40,23 +40,13 @@ jobs:
           path: ${{runner.workspace}}/test/logs
       - name: Show artifacts
         run: |
-          # @echo off
-          # set "directory=${{runner.workspace}}/test/logs"
+          $directory = "logs"
 
-          # for %%F in ("%directory%\*") do (
-          #     if exist "%%F" (
-          #         echo Contents of %%~nxF:
-          #         type "%%F"
-          #         echo -------------------------------------
-          #     )
-          # )
-
-          directory="${{runner.workspace}}/test/logs"  # Replace with the path of the directory you want to print
-
-          for file in "$directory"/*; do
-              if [ -f "$file" ]; then
-                  echo "Contents of $(basename "$file"):"
-                  cat "$file"
-                  echo -e "\n\n"
-              fi
-          done
+          Get-ChildItem -Path $directory | ForEach-Object {
+              if ($_.PSIsContainer -eq $false) {
+                  Write-Host ""
+                  Write-Host "Contents of $($_.Name):"
+                  Get-Content $_.FullName
+                  Write-Host ""
+              }
+          }
