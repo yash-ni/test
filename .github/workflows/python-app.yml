@@ -34,16 +34,24 @@ jobs:
 
       - name: Get current time
         uses: josStorer/get-current-time@v2
-        id: current_time
+        id: current-time
         with:
-          format: YYYYMMDD-HH-MM-SS
+          format: YYYYMMDD-HH
           utcOffset: "+08:00"
+      - name: Use current time
+        env:
+          TIME: "${{ steps.current-time.outputs.time }}"
+          R_TIME: "${{ steps.current-time.outputs.readableTime }}"
+          F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
+          YEAR: "${{ steps.current-time.outputs.year }}"
+          DAY: "${{ steps.current-time.outputs.day }}"
+        run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
 
       - if: ${{always() && steps.check_files.outputs.files_exists == 'true' }}
         name: Download Artifacts if logs exists
         uses: actions/upload-artifact@v3
         with:
-          name: Download New_ATS Test Results ${{ steps.current_time.outputs.time }}
+          name: Download New_ATS Test Results
           path: ${{runner.workspace}}/test/logs
       - name: Show artifacts
         run: |
