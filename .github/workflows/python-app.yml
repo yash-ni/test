@@ -32,11 +32,7 @@ jobs:
         with:
           files: "logs/*.txt"
 
-      - name: File exists
-        if: '
-        run: echo "It exists !
-
-      - if: ${{always() && steps.check_files.outputs.files_exists == 'true}}
+      - if: ${{always() && steps.check_files.outputs.files_exists == 'true' }}
         name: Download Artifacts
         uses: actions/upload-artifact@v3
         with:
