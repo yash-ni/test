@@ -35,7 +35,7 @@ jobs:
       - name: Set Current Time
         id: set_time
         run: |
-          echo "time=${Get-Date -Format "yyyy-MM-dd HH:mm:ss"}" >> $GITHUB_OUTPUT
+          echo "time=$(Get-Date -Format "yyyy-MM-dd HH:mm:ss")" >> $GITHUB_OUTPUT
 
       - if: ${{always() && steps.check_files.outputs.files_exists == 'true' }}
         name: Download Artifacts if logs exists
@@ -51,6 +51,6 @@ jobs:
               if ($_.PSIsContainer -eq $false) {
                   Write-Host "Contents of $($_.Name):"
                   Get-Content $_.FullName
-                  Write-Host "${{steps.set_time.outputs.time }}"
+                  Write-Host "${{steps.set_time.outputs.time}}"
               }
           }
