@@ -35,7 +35,8 @@ jobs:
       - name: Set Current Time
         id: set_time
         run: |
-          echo "time=$(Get-Date -Format "yyyy-MM-dd HH:mm:ss")" >> $GITHUB_OUTPUT
+          $time=$(Get-Date -Format "yyyy-MM-dd HH:mm:ss")
+          echo "time=$time" >> $GITHUB_OUTPUT
 
       - if: ${{always() && steps.check_files.outputs.files_exists == 'true' }}
         name: Download Artifacts if logs exists
