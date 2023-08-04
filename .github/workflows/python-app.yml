@@ -57,6 +57,6 @@ jobs:
               if [ -f "$file" ]; then
                   echo "Contents of $(basename "$file"):"
                   cat "$file"
-                  echo "-------------------------------------"
+                  echo -e "\n\n"
               fi
           done
