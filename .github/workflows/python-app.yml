@@ -40,13 +40,23 @@ jobs:
           path: ${{runner.workspace}}/test/logs
       - name: Show artifacts
         run: |
-          @echo off
-          set "directory=${{runner.workspace}}/test/logs"
+          # @echo off
+          # set "directory=${{runner.workspace}}/test/logs"
 
-          for %%F in ("%directory%\*") do (
-              if exist "%%F" (
-                  echo Contents of %%~nxF:
-                  type "%%F"
-                  echo -------------------------------------
-              )
-          )
+          # for %%F in ("%directory%\*") do (
+          #     if exist "%%F" (
+          #         echo Contents of %%~nxF:
+          #         type "%%F"
+          #         echo -------------------------------------
+          #     )
+          # )
+
+          directory="${{runner.workspace}}/test/logs"  # Replace with the path of the directory you want to print
+
+          for file in "$directory"/*; do
+              if [ -f "$file" ]; then
+                  echo "Contents of $(basename "$file"):"
+                  cat "$file"
+                  echo "-------------------------------------"
+              fi
+          done
