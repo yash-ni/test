@@ -36,7 +36,7 @@ jobs:
         name: Download Artifacts if logs exists
         uses: actions/upload-artifact@v3
         with:
-          name: Download New_ATS Test Results %TIME:~0,2%-%TIME:~3,2%-%TIME:~6,2%
+          name: "Download New_ATS Test Results %TIME:~0,2%-%TIME:~3,2%-%TIME:~6,2%"
           path: ${{runner.workspace}}/test/logs
       - name: Show artifacts
         run: |
