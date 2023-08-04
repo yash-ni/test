@@ -37,7 +37,7 @@ jobs:
         id: current-time
         with:
           format: YYYY-MM-DD_HH-MM-SS
-          utcOffset: "+08:00"
+          utcOffset: "+05:30"
       - name: Use current time
         env:
           TIME: "${{ steps.current-time.outputs.time }}"
