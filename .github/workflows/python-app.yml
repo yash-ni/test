@@ -32,11 +32,12 @@ jobs:
         with:
           files: "${{runner.workspace}}/test/logs/*.txt"
 
-      - name: Set Current Time
-        id: set_time
-        run: |
-          $time=$(Get-Date -Format "yyyy-MM-dd HH:mm:ss")
-          echo "time=$time" >> $GITHUB_OUTPUT
+      - name: Get current time
+        uses: josStorer/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYYMMDD-HH-MM-SS
+          utcOffset: "+08:00"
 
       - if: ${{always() && steps.check_files.outputs.files_exists == 'true' }}
         name: Download Artifacts if logs exists
