@@ -40,5 +40,13 @@ jobs:
           path: ${{runner.workspace}}/test/logs
       - name: Show artifacts
         run: |
-        cat ${{runner.workspace}}/test/logs/*
-        
+          @echo off
+          set "directory=${{runner.workspace}}/test/logs"
+
+          for %%F in ("%directory%\*") do (
+              if exist "%%F" (
+                  echo Contents of %%~nxF:
+                  type "%%F"
+                  echo -------------------------------------
+              )
+          )
