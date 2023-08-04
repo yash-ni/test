@@ -43,7 +43,7 @@ jobs:
         name: Download Artifacts if logs exists
         uses: actions/upload-artifact@v3
         with:
-          name: Download New_ATS Test Results ${{ steps.set_time.outputs.time }}
+          name: Download New_ATS Test Results ${{ steps.current_time.outputs.time }}
           path: ${{runner.workspace}}/test/logs
       - name: Show artifacts
         run: |
@@ -53,6 +53,6 @@ jobs:
               if ($_.PSIsContainer -eq $false) {
                   Write-Host "Contents of $($_.Name):"
                   Get-Content $_.FullName
-                  Write-Host "${{steps.set_time.outputs.time}}"
+                  Write-Host "${{steps.current_time.outputs.time}}"
               }
           }
