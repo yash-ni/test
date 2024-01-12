@@ -32,6 +32,14 @@ jobs:
         with:
           files: "${{runner.workspace}}/test/logs/*.txt"
 
+      - name: Show warning
+        run: |
+          echo "::warning ::Review needed"      
+          
+      - name: Show warning 2
+        run: |
+          echo "::warning Show in overview"
+
       - name: Get current time
         uses: josStorer/get-current-time@v2
         id: current-time
