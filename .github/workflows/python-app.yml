@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   check_python_script:
-    runs-on: windows-latest # Use the appropriate operating system here
+    runs-on: windows-2019 # Use the appropriate operating system here
 
     steps:
       - uses: actions/checkout@v3
