@@ -1,8 +1,6 @@
 import os
 import subprocess
 
-sdfas
-
 def sayHello():
     print("Hello World")
     print("::warning ::This warning is inside python file")
